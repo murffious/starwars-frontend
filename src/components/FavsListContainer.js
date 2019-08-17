@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { withContext } from "../AppContext";
 import update from "immutability-helper";
-import FavList from "./FavList";
 import FavDragOrder from "./FavDragOrder";
 import { Link } from "react-router-dom";
 
@@ -40,6 +39,7 @@ const Container = props => {
               <th>Name</th>
               <th>Homeworld</th>
               <th>Birthday</th>
+              <th>Rank</th>
             </tr>
           </tbody>
         </table>

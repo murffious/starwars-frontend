@@ -11,7 +11,8 @@ const style = {
   color: "black"
 }
 const Card = React.forwardRef(
-  ({ text, isDragging, connectDragSource, connectDropTarget }, ref) => {
+  ({ text, isDragging, connectDragSource, connectDropTarget, index }, ref) => {
+    index = index+1
     const elementRef = useRef(null)
     connectDragSource(elementRef)
     connectDropTarget(elementRef)
@@ -22,7 +23,7 @@ const Card = React.forwardRef(
     console.log(text)
     return (
       <div ref={elementRef} style={{ ...style, opacity }}>
-        {text}
+        {text+" "+ index}
       </div>
     )
   },
