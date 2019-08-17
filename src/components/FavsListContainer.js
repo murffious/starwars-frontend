@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { withContext } from "../AppContext";
 import update from 'immutability-helper'
 import FavList from './FavList';
+import FavDragOrder from "./FavDragOrder";
 const style = {
   width: 400,
 }
