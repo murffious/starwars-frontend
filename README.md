@@ -16,6 +16,6 @@
 ### PART IV - Drag and Drop
 
 5. When a user clicks on the favorite count, route to a page that displays all the favorite people. Include a back button to go back to the main list.
-6. Add drag-and-drop functionality in order to sort the favorites. Display the order on or above the card. The Star Wars API is read-only, so store the sort order on the client-side.
+6. Add drag-and-drop functionality in order to sort the favorites. Display the order on or above the card. Tjj
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

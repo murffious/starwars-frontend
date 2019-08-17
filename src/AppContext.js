@@ -7,6 +7,7 @@ export class AppContextProvider extends Component {
     super();
     this.state = {
       likesCount: 0,
+      favorites: []
     };
   }
 
@@ -16,10 +17,15 @@ export class AppContextProvider extends Component {
   // })
 }
 
+routeToFaves = () => {
 
+}
 hanldeLike = (toggle) => {
+  let updateFavs = [...this.favorites];
+  
   this.setState({
-    likesCount: toggle? this.state.likesCount+1: this.state.likesCount-1
+    likesCount: toggle? this.state.likesCount+1: this.state.likesCount-1,
+    favorite: updateFavs
   })
 }
   render() {
