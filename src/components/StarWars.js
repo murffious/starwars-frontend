@@ -22,7 +22,7 @@ async function loadData(results){
 export default function StarWarsPeopleList(props) {
   const [peopleList, setPeopleList] = useState(null);
   const [count, setCount] = useState(null);
-  let [previous, setPrevious] = useState(0);
+  let [previous, setPrevious] = useState(null);
   let [next, setNext] = useState(1);
   useEffect((page) => {
     getPeople(page)
@@ -84,17 +84,20 @@ export default function StarWarsPeopleList(props) {
               <td>
                 
               </td>
-              <td><button name="previous" onClick={() => getPage(previous) }>
+              <td><button name="previous" onClick={() => getPage(previous) } disabled={previous===null?true:false}>
                  Previous
                 </button></td>
               <td>
-                <button name="next" onClick={() => getPage(next) }>
+                <button name="next" onClick={() => getPage(next) } disabled={next===null?true:false}>
                   Next
                 </button>
               </td>
             </tr>
             <tr>
-              <td>Pages: {Math.ceil(props.count / 10)}</td>
+              <td>Count: {count}</td>
+            </tr>
+            <tr>
+              <td>Pages: {Math.ceil(count / 10)}</td>
             </tr>
           </tfoot>
         </table>
