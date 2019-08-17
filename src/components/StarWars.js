@@ -1,17 +1,16 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Previous, Next } from "./Button";
 import { URL_PEOPLE } from "./helpers/constants";
 import SearchBar from "./SearchBar";
 import Favorite from "./Favorite";
+
+
 function getPeople() {
   return fetch(`${URL_PEOPLE}`).then(data => data.json());
 }
 function getPeopleNext(page) {
   return fetch(`${page}`).then(data => data.json());
 }
-// function search(page){
-//   return fetch(`${page}`).then(data => data.json());
-// }
+
 async function loadData(results){
   return await Promise.all(
     results.results.map(async ({ name, birth_year, homeworld, url }) => {
@@ -70,14 +69,15 @@ export default function StarWarsPeopleList(props) {
               <th>Homeworld</th>
               <th>Birthday</th>
             </tr>
-            {peopleList.map(person => {
+            {peopleList.map((person, index) => {
+              person.index = index;
               return (
                 <Fragment key={person.url}>
                   <tr>
                     <td>{person.name}</td>
                     <td>{person.homeworld}</td>
                     <td>{person.birth_year}</td>
-                    <td><Favorite /></td>
+                    <td><Favorite person={person}/></td>
                   </tr>
                 </Fragment>
               );

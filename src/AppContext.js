@@ -40,15 +40,17 @@ removeFav = (index)=>{
   favorites.splice(index, 1);
   
   this.setState({favorites})
+  localStorage.setItem("favorites",JSON.stringify(favorites))
 }
 
-hanldeLike = (toggle) => {
+hanldeLike = (toggle, person) => {
   
   this.setState({
     likesCount: toggle? this.state.likesCount+1: this.state.likesCount-1
   });
   toggle? localStorage.setItem("likesCount",this.state.likesCount+1): localStorage.setItem("likesCount",this.state.likesCount-1)
- 
+  toggle? this.removeFav(person.index): this.addFav(person);
+
 }
   render() {
     return (
@@ -56,6 +58,7 @@ hanldeLike = (toggle) => {
         value={{
           likesCount: this.state.likesCount,
           hanldeLike: this.hanldeLike,
+          favorites: this.state.favorites,
           ...this.state
         }}
       >

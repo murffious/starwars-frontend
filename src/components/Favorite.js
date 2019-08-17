@@ -13,7 +13,8 @@ class Favorite extends React.Component {
     hanldeClick = () => {
       this.setState({ toggleStyle:!this.state.toggleStyle })
  console.log(this.props)
-      this.props.hanldeLike(!this.state.toggleStyle)
+      let person = this.props.person;
+      this.props.hanldeLike(!this.state.toggleStyle, person)
       
     }
     render() {
