@@ -45,6 +45,7 @@ export default function StarWarsPeopleList() {
       ) : (
         "error"
       )}
+      
     </div>
   );
 }
