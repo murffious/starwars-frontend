@@ -5,6 +5,16 @@ import { URL_PEOPLE } from "./helpers/constants";
 function getInitialPeople() {
   return fetch(`${URL_PEOPLE}`).then(data => data.json());
 }
+async function loadData(results){
+  return await Promise.all(
+    results.results.map(async ({ name, birth_year, homeworld, url }) => {
+      homeworld = await fetch(`${homeworld}`)
+        .then(data => data.json())
+        .then(data => data.name);
+      return { name, birth_year, homeworld, url };
+    })
+  );
+}
 
 export default function StarWarsPeopleList(props) {
   const [peopleList, setPeopleList] = useState(null);
@@ -15,31 +25,16 @@ export default function StarWarsPeopleList(props) {
     console.log("when");
     getInitialPeople()
       .then(async results => {
-        return await Promise.all(
-          results.results.map(async ({ name, birth_year, homeworld, url }) => {
-            homeworld = await fetch(`${homeworld}`)
-              .then(data => data.json())
-              .then(data => data.name);
-            return { name, birth_year, homeworld, url };
-          })
-        );
+        return loadData(results)
       })
       .then(peopleList => setPeopleList(peopleList))
       .catch(err => setPeopleList([]));
   }, []);
   const getNextPage = async (nextUrl) => {
     const data = await fetch(`${nextUrl}`);
-    return await data
-      .json()
+    return await data.json()
       .then(async results => {
-        return await Promise.all(
-          results.results.map(async ({ name, birth_year, homeworld, url }) => {
-            homeworld = await fetch(`${homeworld}`)
-              .then(data => data.json())
-              .then(data => data.name);
-            return { name, birth_year, homeworld, url };
-          })
-        );
+        return loadData(results)
       })
       .then(peopleList => setPeopleList(peopleList))
       .catch(err => setPeopleList([]));
