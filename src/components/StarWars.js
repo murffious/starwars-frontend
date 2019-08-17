@@ -2,8 +2,11 @@ import React, { useEffect, useState, Fragment } from "react";
 import { Previous, Next } from "./Button";
 import { URL_PEOPLE } from "./helpers/constants";
 
-function getInitialPeople() {
+function getPeople() {
   return fetch(`${URL_PEOPLE}`).then(data => data.json());
+}
+function getPeopleNext(page) {
+  return fetch(`${page}`).then(data => data.json());
 }
 async function loadData(results){
   return await Promise.all(
@@ -21,26 +24,34 @@ export default function StarWarsPeopleList(props) {
   const [count, setCount] = useState(null);
   let [previous, setPrevious] = useState(0);
   let [next, setNext] = useState(1);
-  useEffect(() => {
-    console.log("when");
-    getInitialPeople()
+  useEffect((page) => {
+    getPeople(page)
       .then(async results => {
-        return loadData(results)
+
+        setPrevious(results.previous);
+        setNext(results.next);
+        setCount(results.count);
+
+        return loadData(results);
       })
       .then(peopleList => setPeopleList(peopleList))
       .catch(err => setPeopleList([]));
   }, []);
 
-  const getNextPage = async (nextUrl) => {
+  const getPage = (page)=>{
+    getPeopleNext(page)
+    .then(async results => {
 
-    const data = await fetch(`${nextUrl}`);
-    return await data.json()
-      .then(async results => {
-        return loadData(results)
-      })
-      .then(peopleList => setPeopleList(peopleList))
-      .catch(err => setPeopleList([]));
-  };
+      setPrevious(results.previous);
+      setNext(results.next);
+      setCount(results.count);
+
+      return loadData(results);
+    })
+    .then(peopleList => setPeopleList(peopleList))
+    .catch(err => setPeopleList([]));
+  }
+
   return (
     <div>
       {peopleList === null ? (
@@ -71,11 +82,13 @@ export default function StarWarsPeopleList(props) {
             </tr>
             <tr>
               <td>
-                <Previous setPrevious={setPrevious} previous={props.previous} />
+                
               </td>
-              {/* <td><Next setNext={setNext} next={props.next}/></td> */}
+              <td><button name="previous" onClick={() => getPage(previous) }>
+                 Previous
+                </button></td>
               <td>
-                <button name="next" onClick={() => getNextPage(props.next) }>
+                <button name="next" onClick={() => getPage(next) }>
                   Next
                 </button>
               </td>

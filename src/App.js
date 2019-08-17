@@ -20,7 +20,12 @@ class App extends React.Component {
     
   }
 
-  handleClick = page => {};
+  handleClick = page => {
+
+    this.setState({
+      next: page
+    })
+  };
   render() {
     const { count, next, previous } = this.state;
     return (
@@ -30,7 +35,7 @@ class App extends React.Component {
             <img src={logo} className="App-logo" alt="logo" />
             <p>Click to have fun with Star Wars people.</p>
             {/* SearchBar */}
-            <StarWars count={count} next={next} previous={previous} />
+            <StarWars count={count} next={next} previous={previous} handleClick={this.handleClick} />
           </header>
         </AppContextProvider>
       </div>
