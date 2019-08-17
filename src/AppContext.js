@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { URL_PEOPLE } from "./components/helpers/constants";
 
 const AppContext = React.createContext();
 
@@ -10,7 +11,17 @@ export class AppContextProvider extends Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    fetch(`${URL_PEOPLE}`)
+    .then(data => data.json())
+    .then(data => {
+      return this.setState({
+        count: data.count,
+        next: data.next,
+        previous: data.previous
+      });
+    });
+  }
 
   render() {
     return (
