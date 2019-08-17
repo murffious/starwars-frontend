@@ -33,6 +33,7 @@ addFav = async (fav)=>{
   this.setState({ 
       favorites: favorites
   });
+  localStorage.setItem("favorites",JSON.stringify(favorites))
 }
 
 removeFav = (index)=>{
@@ -43,13 +44,13 @@ removeFav = (index)=>{
   localStorage.setItem("favorites",JSON.stringify(favorites))
 }
 
-hanldeLike = (toggle, person) => {
+hanldeLike = async (toggle, person) => {
   
   this.setState({
     likesCount: toggle? this.state.likesCount+1: this.state.likesCount-1
   });
   toggle? localStorage.setItem("likesCount",this.state.likesCount+1): localStorage.setItem("likesCount",this.state.likesCount-1)
-  toggle? this.removeFav(person.index): this.addFav(person);
+  toggle? await this.addFav(person): await this.removeFav(person.index)
 
 }
   render() {
