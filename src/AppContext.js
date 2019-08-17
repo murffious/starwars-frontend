@@ -34,9 +34,9 @@ addFav = async (fav)=>{
   localStorage.setItem("favorites",JSON.stringify(favorites))
 }
 
-removeFav = (index)=>{
+removeFav = async (index)=>{
   let favorites = this.state.favorites;
-  favorites.splice(index, 1);
+  await favorites.splice(index, 1);
   
   this.setState({favorites})
   localStorage.setItem("favorites",JSON.stringify(favorites))
