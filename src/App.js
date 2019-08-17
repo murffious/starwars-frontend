@@ -11,15 +11,9 @@ function App() {
         <p>
           Click to have fun with Star Wars people.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* SearchBar */}
         <StarWars/>
+        {/* // paginate */}
       </header>
     </div>
   );
