@@ -32,6 +32,7 @@ class App extends React.Component {
       <div className="App">
         <AppContextProvider>
           <header className="App-header">
+            <p style={{position: "fixed", top:"1%", right:"1%"}}>Fav count:</p>
             <img src={logo} className="App-logo" alt="logo" />
             <p>Click to have fun with Star Wars people.</p>
             {/* SearchBar */}
