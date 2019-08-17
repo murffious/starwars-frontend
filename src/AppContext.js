@@ -20,33 +20,34 @@ export class AppContextProvider extends Component {
 routeToFaves = () => {
 
 }
-async addPlayer(){
-  let length = this.state.players.length;
+addFav = async (fav)=>{
 
-  let players = this.state.players.concat([
+  let favorites = this.state.favorites.concat([
       { 
-          name: `${this.props.organization.name} ${length + 1}`, 
-          orientation: 'horizontal' 
+          name: `${fav.name}`, 
+          birth_year: `${fav.birth_year}`,
+          homeworld: `${fav.homeworld}`
       }
   ]);
  
   this.setState({ 
-      players: players
+      favorites: favorites
   });
 }
 
-removePlayer(index) {
-  let players = this.state.players;
-  players.splice(index, 1);
+removeFav = (index)=>{
+  let favorites = this.state.favorites;
+  favorites.splice(index, 1);
   
-  this.setState({players})
+  this.setState({favorites})
 }
-hanldeLike = (toggle) => {
-  let updateFavs = [...this.favorites];
 
+hanldeLike = (toggle) => {
+  if(toggle){
+    // this.removeFav()
+  }
   this.setState({
-    likesCount: toggle? this.state.likesCount+1: this.state.likesCount-1,
-    favorite: updateFavs
+    likesCount: toggle? this.state.likesCount+1: this.state.likesCount-1
   })
 }
   render() {
