@@ -5,8 +5,7 @@ export default class Favorite extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        count: 0,
-        next: this.props.next
+        toggleStyle: false
       };
     }
   
@@ -14,8 +13,8 @@ export default class Favorite extends React.Component {
       return (
         <div>
          
-          <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-            <img src={icon} height="10px" alt="like"/>{this.state.count}
+          <button style={this.state.toggleStyle ? {backgroundColor:"red"}: null} onClick={() => this.setState({ count: this.state.count + 1, toggleStyle:true })}>
+            <img src={icon} height="10px" alt="like"/>
           </button>
         </div>
       );
