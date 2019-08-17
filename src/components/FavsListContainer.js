@@ -8,6 +8,7 @@ const style = {
 }
 const Container = (props) => {
   {
+  
     const [favorites, setFavorites] = useState(props.favorites)
     const moveCard = (dragIndex, hoverIndex) => {
       const dragCard = favorites[dragIndex]
@@ -17,14 +18,15 @@ const Container = (props) => {
         }),
       )
     }
+    console.log(favorites)
     return (
       <div style={style}>
         {favorites.map((card, i) => (
-          <FavList
-            key={card.id}
+          <FavDragOrder
+            key={card.name}
             index={i}
-            id={card.id}
-            text={card.text}
+            id={card.name}
+            text={card.name}
             moveCard={moveCard}
           />
         ))}
