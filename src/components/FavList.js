@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Favorite from "./Favorite";
+// import Favorite from "./Favorite";
 // not sure if allowing UNLIKE on this page yet
 import { withContext } from "../AppContext";
 import { Link } from "react-router-dom";
