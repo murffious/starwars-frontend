@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { Previous, Next } from "./Button";
 import { URL_PEOPLE } from "./helpers/constants";
+import SearchBar from "./SearchBar";
 
 function getPeople() {
   return fetch(`${URL_PEOPLE}`).then(data => data.json());
@@ -8,6 +9,9 @@ function getPeople() {
 function getPeopleNext(page) {
   return fetch(`${page}`).then(data => data.json());
 }
+// function search(page){
+//   return fetch(`${page}`).then(data => data.json());
+// }
 async function loadData(results){
   return await Promise.all(
     results.results.map(async ({ name, birth_year, homeworld, url }) => {
@@ -24,8 +28,8 @@ export default function StarWarsPeopleList(props) {
   const [count, setCount] = useState(null);
   let [previous, setPrevious] = useState(null);
   let [next, setNext] = useState(1);
-  useEffect((page) => {
-    getPeople(page)
+  useEffect(() => {
+    getPeople(  )
       .then(async results => {
 
         setPrevious(results.previous);
@@ -41,11 +45,10 @@ export default function StarWarsPeopleList(props) {
   const getPage = (page)=>{
     getPeopleNext(page)
     .then(async results => {
-
       setPrevious(results.previous);
       setNext(results.next);
       setCount(results.count);
-
+     
       return loadData(results);
     })
     .then(peopleList => setPeopleList(peopleList))
@@ -58,6 +61,9 @@ export default function StarWarsPeopleList(props) {
         "...loading"
       ) : peopleList.length > 0 ? (
         <table>
+          <thead>
+            <tr><td><SearchBar getPage={getPage}/></td></tr>
+          </thead>
           <tbody>
             <tr>
               <th>Name</th>
@@ -77,9 +83,7 @@ export default function StarWarsPeopleList(props) {
             })}
           </tbody>
           <tfoot>
-            <tr>
-              <td>Count:{props.count} </td>
-            </tr>
+            
             <tr>
               <td>
                 
