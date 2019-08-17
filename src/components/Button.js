@@ -1,4 +1,15 @@
-import React from 'react';
+import React from "react";
 
-export const Previous = ()=> <button name="previous" onClick={() => this.handleClick}>Previous</button>
-export const Next = () => <button name="next" onClick={() => this.handleClick}>Next</button>
+
+export const Previous = props => {
+  return (
+    <button name="previous" onClick={() => this.handleClick("previous")}>
+      Previous
+    </button>
+  );
+};
+export const Next = props => (
+  <button name="next" onClick={() => this.handleClick}>
+    Next
+  </button>
+);

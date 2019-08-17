@@ -38,7 +38,7 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>Click to have fun with Star Wars people.</p>
           {/* SearchBar */}
-          <StarWars count={count} next={count} previous={previous} />
+          <StarWars count={count} next={next} previous={previous} />
         </header>
       </div>
     );
