@@ -5,6 +5,7 @@ import StarWars from "./components/StarWars";
 import { AppContextProvider } from "./AppContext";
 import Count from "./components/Count";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import FavsListContainer from "./components/FavsListContainer";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
             {/* SearchBar */}
             {/* <StarWars  /> */}
             <Switch>
-            <Route path={"/"} component={StarWars} />
+            <Route exact path={"/"} component={StarWars} />
+            <Route exact path={"/favs"} component={FavsListContainer} />
           </Switch>
           </header>
           

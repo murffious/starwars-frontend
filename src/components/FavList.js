@@ -1,17 +1,17 @@
 import React, {Fragment} from "react";
 import Favorite from "./Favorite";
 // not sure if allowing UNLIKE on this page yet
+import { withContext } from "../AppContext";
 
 
 
-export default function FavList(props) {
+function FavList(props) {
  
-
   return (
     <div>
-      {props.peopleList === null ? (
+      {props.favorites === null ? (
         "...loading"
-      ) : props.peopleList.length > 0 ? (
+      ) : props.favorites.length > 0 ? (
         <table>
           <thead>
             <tr><td>My Favorites</td></tr>
@@ -22,7 +22,7 @@ export default function FavList(props) {
               <th>Homeworld</th>
               <th>Birthday</th>
             </tr>
-            {props.peopleList.map((person, index) => {
+            {props.favorites.map((person, index) => {
               person.index = index;
               return (
                 <Fragment key={person.url}>
@@ -30,33 +30,17 @@ export default function FavList(props) {
                     <td>{person.name}</td>
                     <td>{person.homeworld}</td>
                     <td>{person.birth_year}</td>
-                    <td><Favorite person={person}/></td>
+                    
                   </tr>
                 </Fragment>
               );
             })}
           </tbody>
           <tfoot>
+            <tr>
+              <td>Count: {props.favorites.length}</td>
+            </tr>
             
-            <tr>
-              <td>
-                
-              </td>
-              <td><button name="previous" onClick={() => getPage(previous) } disabled={previous===null?true:false}>
-                 Previous
-                </button></td>
-              <td>
-                <button name="next" onClick={() => getPage(next) } disabled={next===null?true:false}>
-                  Next
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Count: {count}</td>
-            </tr>
-            <tr>
-              <td>Page: {Math.ceil(count / 10)}</td>
-            </tr>
           </tfoot>
         </table>
       ) : (
@@ -65,3 +49,4 @@ export default function FavList(props) {
     </div>
   );
 }
+export default withContext(FavList)
