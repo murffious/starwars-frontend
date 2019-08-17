@@ -6,15 +6,13 @@ export class AppContextProvider extends Component {
   constructor() {
     super();
     this.state = {
-      likesCount: 0,
+      likesCount: JSON.parse(localStorage.getItem("likesCount"))|| 0,
       favorites: []
     };
   }
 
   componentDidMount(){
-  //   this.setState({
-  //     likesCount:JSON.parse(localStorage.getItem("likes")) 
-  // })
+ 
 }
 
 routeToFaves = () => {
