@@ -15,17 +15,18 @@ export default function StarWarsPeopleList(props) {
   let [next, setNext] = useState(1);
   useEffect(() => {
     getPeople()
-      .then(results => {
+      .then(async results => {
         console.log(results);
         setPrevious(results.prevoius);
         setNext(results.next);
         setCount(results.count);
 
         // looks like I need to go get the world from given url
-        return results.results.map(({ name, birth_year, homeworld, url }) => {
-          // url = await fetch(`${homeworld}`).then(data => data.name)
+        return await Promise.all(results.results.map(async ({ name, birth_year, homeworld, url }) => {
+          homeworld = await fetch(`${homeworld}`).then(data =>
+            data.json()).then(data => data.name)
           return { name, birth_year, homeworld, url };
-        });
+        }));
       })
       .then(peopleList => setPeopleList(peopleList))
       .catch(err => setPeopleList([]));
