@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { withContext } from "../AppContext";
 import update from 'immutability-helper'
 import FavList from './FavList';
@@ -21,14 +21,31 @@ const Container = (props) => {
     console.log(favorites)
     return (
       <div style={style}>
+        <table>
+          <thead>
+            <tr>
+              <td>My Favorites</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Homeworld</th>
+              <th>Birthday</th>
+            </tr>
+          </tbody>
+            </table>
         {favorites.map((card, i) => (
+          <Fragment>
+            
           <FavDragOrder
             key={card.name}
             index={i}
             id={card.name}
-            text={card.name}
+            text={card.name + " " + card.homeworld + " "+ card.birth_year}
             moveCard={moveCard}
           />
+          </Fragment>
         ))}
       </div>
     )

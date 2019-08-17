@@ -7,6 +7,7 @@ const style = {
   marginBottom: '.5rem',
   backgroundColor: 'white',
   cursor: 'move',
+  color: "black"
 }
 const Card = React.forwardRef(
   ({ text, isDragging, connectDragSource, connectDropTarget }, ref) => {
@@ -17,6 +18,7 @@ const Card = React.forwardRef(
     useImperativeHandle(ref, () => ({
       getNode: () => elementRef.current,
     }))
+    console.log(text)
     return (
       <div ref={elementRef} style={{ ...style, opacity }}>
         {text}
