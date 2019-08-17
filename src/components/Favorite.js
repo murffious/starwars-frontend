@@ -17,6 +17,17 @@ class Favorite extends React.Component {
       this.props.hanldeLike(!this.state.toggleStyle, person)
       
     }
+
+    componentDidMount() {
+      this.checkMemory();
+    }
+    checkMemory = ()=>{
+      let existingLike = JSON.parse(localStorage.getItem("favorites"))||[];
+     let preFill = existingLike.filter(item =>{
+        return this.props.person.name === item.name
+      })
+      this.setState({ toggleStyle: preFill.length > 0? true: false})
+    }
     render() {
       return (
         <div>

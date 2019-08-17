@@ -22,6 +22,7 @@ async function loadData(results){
   );
 }
 
+
 export default function StarWarsPeopleList(props) {
   const [peopleList, setPeopleList] = useState(null);
   const [count, setCount] = useState(null);

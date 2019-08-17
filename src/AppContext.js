@@ -7,7 +7,7 @@ export class AppContextProvider extends Component {
     super();
     this.state = {
       likesCount: JSON.parse(localStorage.getItem("likesCount"))|| 0,
-      favorites: []
+      favorites: JSON.parse(localStorage.getItem("favorites"))|| []
     };
   }
 
