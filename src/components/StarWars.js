@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
-import Button from "./Button";
+import {Previous, Next} from "./Button";
 import { URL_PEOPLE } from "./helpers/constants";
 
 function getPeople(url) {
@@ -64,8 +64,9 @@ export default function StarWarsPeopleList(props) {
               <td>Count:{count} </td>
             </tr>
             <tr>
-              <td>{props.previous} </td>
-              <td>{props.next}</td>
+           
+              <td><Previous/></td>
+              <td><Next/></td>
             </tr>
             <tr>
               <td>Pages: {Math.ceil(count / 10)}</td>

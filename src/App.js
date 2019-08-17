@@ -27,8 +27,8 @@ class App extends React.Component {
       });
   }
 
-  handleClick = () =>{
-
+  handleClick = (page) =>{
+  
   }
   render() {
     return (
@@ -37,7 +37,7 @@ class App extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>Click to have fun with Star Wars people.</p>
           {/* SearchBar */}
-          <StarWars next={ <button name="next" onClick={() => this.handleClick}>Next</button>} previous={<button name="previous" onClick={() => this.handleClick}>Previous</button>}/>
+          <StarWars />
           {/* // paginate */}
           
          

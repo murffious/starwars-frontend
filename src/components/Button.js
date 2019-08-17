@@ -1,26 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React from 'react';
 
-function getPage(url) {
-  return fetch(url).then(data => data.json());
-}
-
-// thinking to feed the url in from props - 
-
-export default function Button() {
-  const [peopleList, setPeopleList] = useState(null);
-  useEffect(() => {
-    getPage()
-      .then(results => {
-        console.log(results);
-        return results.results.map(({ name, birth_year, homeworld, url }) => {
-          return { name, birth_year, homeworld, url };
-        });
-      })
-      .then(peopleList => setPeopleList(peopleList))
-      .catch(err => setPeopleList([]));
-  }, []);
-  console.log(peopleList);
-  return (
-    <button>Next</button>
-  )
-}
+export const Previous = ()=> <button name="previous" onClick={() => this.handleClick}>Previous</button>
+export const Next = () => <button name="next" onClick={() => this.handleClick}>Next</button>
