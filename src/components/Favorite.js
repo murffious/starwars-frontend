@@ -1,7 +1,8 @@
 import React from "react";
 import icon from "../assets/like.png";
+import { withContext } from "../AppContext";
 
-export default class Favorite extends React.Component {
+class Favorite extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -10,6 +11,7 @@ export default class Favorite extends React.Component {
     }
   
     hanldeClick = () => {
+      
       localStorage.setItem("likes")
     }
     render() {
@@ -22,3 +24,5 @@ export default class Favorite extends React.Component {
       );
     }
   }
+
+  export default withContext(Favorite);
