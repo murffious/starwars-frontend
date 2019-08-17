@@ -4,6 +4,8 @@ function getPage(url) {
   return fetch(url).then(data => data.json());
 }
 
+// thinking to feed the url in from props - 
+
 export default function Button() {
   const [peopleList, setPeopleList] = useState(null);
   useEffect(() => {
