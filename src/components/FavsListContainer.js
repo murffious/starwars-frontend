@@ -1,30 +1,38 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment } from "react";
 import { withContext } from "../AppContext";
-import update from 'immutability-helper'
-import FavList from './FavList';
+import update from "immutability-helper";
+import FavList from "./FavList";
 import FavDragOrder from "./FavDragOrder";
+import { Link } from "react-router-dom";
+
 const style = {
-  width: 400,
-}
-const Container = (props) => {
+  width: 400
+};
+const Container = props => {
   {
-  
-    const [favorites, setFavorites] = useState(props.favorites)
+    const [favorites, setFavorites] = useState(props.favorites);
     const moveCard = (dragIndex, hoverIndex) => {
-      const dragCard = favorites[dragIndex]
+      const dragCard = favorites[dragIndex];
       setFavorites(
         update(favorites, {
-          $splice: [[dragIndex, 1], [hoverIndex, 0, dragCard]],
-        }),
-      )
-    }
-    console.log(favorites)
+          $splice: [[dragIndex, 1], [hoverIndex, 0, dragCard]]
+        })
+      );
+    };
+    console.log(favorites);
     return (
       <div style={style}>
         <table>
           <thead>
             <tr>
               <td>My Favorites</td>
+            </tr>
+            <tr>
+              <td>
+                <Link to={"/"}>
+                  <button name="back">Back</button>{" "}
+                </Link>
+              </td>
             </tr>
           </thead>
           <tbody>
@@ -34,21 +42,20 @@ const Container = (props) => {
               <th>Birthday</th>
             </tr>
           </tbody>
-            </table>
+        </table>
         {favorites.map((card, i) => (
-          <Fragment>
-            
-          <FavDragOrder
-            key={card.name}
-            index={i}
-            id={card.name}
-            text={card.name + " " + card.homeworld + " "+ card.birth_year}
-            moveCard={moveCard}
-          />
+          <Fragment key={card.name}>
+            <FavDragOrder
+              key={card.name}
+              index={i}
+              id={card.name}
+              text={card.name + " " + card.homeworld + " " + card.birth_year}
+              moveCard={moveCard}
+            />
           </Fragment>
         ))}
       </div>
-    )
+    );
   }
-}
-export default withContext(Container)
+};
+export default withContext(Container);
