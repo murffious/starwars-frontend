@@ -2,7 +2,7 @@ import React from "react";
 import { withContext } from "../AppContext";
 
 const Count = (props) => {
-  
+  console.log(props)
         return (
             <p style={{position: "fixed", top:"1%", right:"1%"}}>Fav count:{props.likesCount}</p>
         );

@@ -16,11 +16,16 @@ export class AppContextProvider extends Component {
   // })
 }
 
+
+hanldeLike = () => {
+console.log("test")
+}
   render() {
     return (
       <AppContext.Provider
         value={{
           likesCount: this.state.likesCount,
+          hanldeLike: this.hanldeLike,
           ...this.state
         }}
       >
