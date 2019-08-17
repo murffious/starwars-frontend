@@ -6,16 +6,21 @@ export class AppContextProvider extends Component {
   constructor() {
     super();
     this.state = {
-      likesCount: JSON.parse(localStorage.getItem("likes")) || {},
+      likesCount: 0,
     };
   }
 
+  componentDidMount(){
+  //   this.setState({
+  //     likesCount:JSON.parse(localStorage.getItem("likes")) 
+  // })
+}
 
   render() {
     return (
       <AppContext.Provider
         value={{
-          likes: localStorage.getItem("likes"),
+          likesCount: this.state.likesCount,
           ...this.state
         }}
       >

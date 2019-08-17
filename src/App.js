@@ -2,17 +2,14 @@ import React from "react";
 import logo from "./Vadar.svg";
 import "./App.css";
 import StarWars from "./components/StarWars";
-import Button from "./components/Button";
-import { URL_PEOPLE } from "./components/helpers/constants";
 import { AppContextProvider } from "./AppContext";
-
+import { withContext } from "./AppContext";
+import Count from "./components/Count";
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
-      next: "",
-      previous: ""
+      count: props.likes,
     };
   }
 
@@ -32,7 +29,7 @@ class App extends React.Component {
       <div className="App">
         <AppContextProvider>
           <header className="App-header">
-            <p style={{position: "fixed", top:"1%", right:"1%"}}>Fav count:</p>
+          <Count/>
             <img src={logo} className="App-logo" alt="logo" />
             <p>Click to have fun with Star Wars people.</p>
             {/* SearchBar */}
@@ -44,4 +41,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withContext(App);
