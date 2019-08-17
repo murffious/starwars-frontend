@@ -18,7 +18,6 @@ const Container = props => {
         })
       );
     };
-    console.log(favorites);
     return (
       <div style={style}>
         <table>

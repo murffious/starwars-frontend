@@ -3,7 +3,6 @@ import { URL_PEOPLE } from "./helpers/constants";
 import SearchBar from "./SearchBar";
 import Favorite from "./Favorite";
 
-
 function getPeople() {
   return fetch(`${URL_PEOPLE}`).then(data => data.json());
 }
@@ -11,7 +10,7 @@ function getPeopleNext(page) {
   return fetch(`${page}`).then(data => data.json());
 }
 
-async function loadData(results){
+async function loadData(results) {
   return await Promise.all(
     results.results.map(async ({ name, birth_year, homeworld, url }) => {
       homeworld = await fetch(`${homeworld}`)
@@ -22,16 +21,14 @@ async function loadData(results){
   );
 }
 
-
 export default function StarWarsPeopleList(props) {
   const [peopleList, setPeopleList] = useState(null);
   const [count, setCount] = useState(null);
   let [previous, setPrevious] = useState(null);
   let [next, setNext] = useState(1);
   useEffect(() => {
-    getPeople(  )
+    getPeople()
       .then(async results => {
-
         setPrevious(results.previous);
         setNext(results.next);
         setCount(results.count);
@@ -42,18 +39,18 @@ export default function StarWarsPeopleList(props) {
       .catch(err => setPeopleList([]));
   }, []);
 
-  const getPage = (page)=>{
+  const getPage = page => {
     getPeopleNext(page)
-    .then(async results => {
-      setPrevious(results.previous);
-      setNext(results.next);
-      setCount(results.count);
-     
-      return loadData(results);
-    })
-    .then(peopleList => setPeopleList(peopleList))
-    .catch(err => setPeopleList([]));
-  }
+      .then(async results => {
+        setPrevious(results.previous);
+        setNext(results.next);
+        setCount(results.count);
+
+        return loadData(results);
+      })
+      .then(peopleList => setPeopleList(peopleList))
+      .catch(err => setPeopleList([]));
+  };
 
   return (
     <div>
@@ -62,7 +59,11 @@ export default function StarWarsPeopleList(props) {
       ) : peopleList.length > 0 ? (
         <table>
           <thead>
-            <tr><td><SearchBar getPage={getPage}/></td></tr>
+            <tr>
+              <td>
+                <SearchBar getPage={getPage} />
+              </td>
+            </tr>
           </thead>
           <tbody>
             <tr>
@@ -78,23 +79,32 @@ export default function StarWarsPeopleList(props) {
                     <td>{person.name}</td>
                     <td>{person.homeworld}</td>
                     <td>{person.birth_year}</td>
-                    <td><Favorite person={person}/></td>
+                    <td>
+                      <Favorite person={person} />
+                    </td>
                   </tr>
                 </Fragment>
               );
             })}
           </tbody>
           <tfoot>
-            
             <tr>
+              <td />
               <td>
-                
+                <button
+                  name="previous"
+                  onClick={() => getPage(previous)}
+                  disabled={previous === null ? true : false}
+                >
+                  Previous
+                </button>
               </td>
-              <td><button name="previous" onClick={() => getPage(previous) } disabled={previous===null?true:false}>
-                 Previous
-                </button></td>
               <td>
-                <button name="next" onClick={() => getPage(next) } disabled={next===null?true:false}>
+                <button
+                  name="next"
+                  onClick={() => getPage(next)}
+                  disabled={next === null ? true : false}
+                >
                   Next
                 </button>
               </td>

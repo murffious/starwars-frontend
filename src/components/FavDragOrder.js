@@ -20,7 +20,6 @@ const Card = React.forwardRef(
     useImperativeHandle(ref, () => ({
       getNode: () => elementRef.current,
     }))
-    console.log(text)
     return (
       <div ref={elementRef} style={{ ...style, opacity }}>
         {text+" "+ index}
