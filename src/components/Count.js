@@ -1,10 +1,11 @@
 import React from "react";
 import { withContext } from "../AppContext";
+import { Link } from "react-router-dom";
 
 const Count = (props) => {
   console.log(props)
         return (
-            <button style={{position: "fixed", top:"1%", right:"1%"}}>Favs:{props.likesCount}</button>
+          <Link to={"/favs"}><button style={{position: "fixed", top:"1%", right:"1%"}}>Favs:{props.likesCount}</button></Link>
         );
  
 }

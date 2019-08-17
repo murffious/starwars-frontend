@@ -1,12 +1,10 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import Favorite from "./Favorite";
 // not sure if allowing UNLIKE on this page yet
 import { withContext } from "../AppContext";
-
-
+import { Link } from "react-router-dom";
 
 function FavList(props) {
- 
   return (
     <div>
       {props.favorites === null ? (
@@ -14,7 +12,9 @@ function FavList(props) {
       ) : props.favorites.length > 0 ? (
         <table>
           <thead>
-            <tr><td>My Favorites</td></tr>
+            <tr>
+              <td>My Favorites</td>
+            </tr>
           </thead>
           <tbody>
             <tr>
@@ -30,7 +30,6 @@ function FavList(props) {
                     <td>{person.name}</td>
                     <td>{person.homeworld}</td>
                     <td>{person.birth_year}</td>
-                    
                   </tr>
                 </Fragment>
               );
@@ -40,7 +39,12 @@ function FavList(props) {
             <tr>
               <td>Count: {props.favorites.length}</td>
             </tr>
-            
+            <tr>
+              <td>
+                {" "}
+              <Link to={"/"}><button name="back">Back</button> </Link> 
+              </td>
+            </tr>
           </tfoot>
         </table>
       ) : (
@@ -49,4 +53,4 @@ function FavList(props) {
     </div>
   );
 }
-export default withContext(FavList)
+export default withContext(FavList);
