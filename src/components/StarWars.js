@@ -21,7 +21,6 @@ export default function StarWarsPeopleList(props) {
         setNext(results.next);
         setCount(results.count);
 
-        // looks like I need to go get the world from given url code reference
         return await Promise.all(results.results.map(async ({ name, birth_year, homeworld, url }) => {
           homeworld = await fetch(`${homeworld}`).then(data =>
             data.json()).then(data => data.name)
