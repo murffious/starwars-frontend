@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import { Previous, Next } from "./Button";
 import { URL_PEOPLE } from "./helpers/constants";
 import SearchBar from "./SearchBar";
-
+import Favorite from "./Favorite";
 function getPeople() {
   return fetch(`${URL_PEOPLE}`).then(data => data.json());
 }
@@ -77,6 +77,7 @@ export default function StarWarsPeopleList(props) {
                     <td>{person.name}</td>
                     <td>{person.homeworld}</td>
                     <td>{person.birth_year}</td>
+                    <td><Favorite /></td>
                   </tr>
                 </Fragment>
               );

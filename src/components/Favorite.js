@@ -1,5 +1,7 @@
 import React from "react";
-export class Example extends React.Component {
+import icon from "../assets/like.png";
+
+export default class Favorite extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
@@ -11,9 +13,9 @@ export class Example extends React.Component {
     render() {
       return (
         <div>
-          <p>You clicked {this.state.count} times</p>
+         
           <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-            Click me
+            <img src={icon} height="10px" alt="like"/>{this.state.count}
           </button>
         </div>
       );
