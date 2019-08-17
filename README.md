@@ -1,68 +1,21 @@
+# Star Wars - Front End Developer Assessment
+
+### PART I - Basic Data Retrieval
+
+1. GET Star Wars people data from https://swapi.co/api/people and show it in a list. Show each person's name, birthday, and home world name on the list view.
+
+### PART II - Controlled Data Fetching
+
+2. The https://swapi.co/api/people endpoint only gives you data for 10 person records at a time, but there are many more total people than that. Implement pagination to allow the user to view all of the people, one page at a time. Hint: The Star Wars API will return `count`, `next`, and `previous` data in the response payload to help you implement pagination.
+3. Add a search bar to work as a filter on the people, searching by the person's name, and paginate the results. See https://swapi.co/documentation#search for documentation on searching
+
+### PART III - Favoriting Cards
+
+4. Add a _favorite_ button to each Person in the list and a favorite count to the upper right hand corner of the screen. Clicking the button should toggle the favorited button state and increments/decrements the favorite count appropriately. The Star Wars API is read-only, so store the favorite data in-memory on the client-side.
+
+### PART IV - Drag and Drop
+
+5. When a user clicks on the favorite count, route to a page that displays all the favorite people. Include a back button to go back to the main list.
+6. Add drag-and-drop functionality in order to sort the favorites. Display the order on or above the card. The Star Wars API is read-only, so store the sort order on the client-side.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
