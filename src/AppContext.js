@@ -17,8 +17,10 @@ export class AppContextProvider extends Component {
 }
 
 
-hanldeLike = () => {
-console.log("test")
+hanldeLike = (toggle) => {
+  this.setState({
+    likesCount: toggle? this.state.likesCount+1: this.state.likesCount-1
+  })
 }
   render() {
     return (

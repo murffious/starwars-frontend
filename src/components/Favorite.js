@@ -11,13 +11,16 @@ class Favorite extends React.Component {
     }
   
     hanldeClick = () => {
+      this.setState({ toggleStyle:!this.state.toggleStyle })
+
+      this.props.hanldeLike(!this.state.toggleStyle)
+      // localStorage.setItem("likes")
       
-      localStorage.setItem("likes")
     }
     render() {
       return (
         <div>
-          <button style={this.state.toggleStyle ? {backgroundColor:"red"}: null} onClick={() => this.setState({ toggleStyle:!this.state.toggleStyle })}>
+          <button style={this.state.toggleStyle ? {backgroundColor:"red"}: null} onClick={() => this.hanldeClick()}>
             <img src={icon} height="10px" alt="like"/>
           </button>
         </div>
