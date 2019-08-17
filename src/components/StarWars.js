@@ -97,7 +97,7 @@ export default function StarWarsPeopleList(props) {
               <td>Count: {count}</td>
             </tr>
             <tr>
-              <td>Pages: {Math.ceil(count / 10)}</td>
+              <td>Page: {Math.ceil(count / 10)}</td>
             </tr>
           </tfoot>
         </table>
