@@ -4,6 +4,7 @@ import "./App.css";
 import StarWars from "./components/StarWars";
 import Button from "./components/Button";
 import { URL_PEOPLE } from "./components/helpers/constants";
+import {AppContextProvider} from "./AppContext";
 
 class App extends React.Component {
   constructor(props) {
@@ -34,12 +35,14 @@ class App extends React.Component {
     const { count, next, previous } = this.state;
     return (
       <div className="App">
+        <AppContextProvider>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>Click to have fun with Star Wars people.</p>
           {/* SearchBar */}
           <StarWars count={count} next={next} previous={previous} />
         </header>
+        </AppContextProvider>
       </div>
     );
   }
