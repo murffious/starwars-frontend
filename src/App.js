@@ -2,8 +2,23 @@ import React from 'react';
 import logo from './Vadar.svg';
 import './App.css';
 import StarWars from './components/StarWars';
+import Button from "./components/Button";
 
-function App() {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+      next: "",
+      previous: ""
+    };
+  }
+
+  componentDidMount(){
+    
+  }
+render(){
+
   return (
     <div className="App">
       <header className="App-header">
@@ -14,9 +29,11 @@ function App() {
         {/* SearchBar */}
         <StarWars/>
         {/* // paginate */}
+
       </header>
     </div>
   );
+}
 }
 
 export default App;

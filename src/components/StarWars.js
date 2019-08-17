@@ -1,26 +1,29 @@
 import React, { useEffect, useState, Fragment } from "react";
-const URL_PEOPLE = "https://swapi.co/api/people"
+import Button from "./Button";
+const URL_PEOPLE = "https://swapi.co/api/people";
 
 function getPeople(page) {
-  console.log(page)
-  return fetch(`${URL_PEOPLE}` ).then(data => data.json());
+  return fetch(`${URL_PEOPLE}${page > 1 ? "/?page=" + page : ""}`).then(data =>
+    data.json()
+  );
 }
 
-export default function StarWarsPeopleList() {
+export default function StarWarsPeopleList(props) {
   const [peopleList, setPeopleList] = useState(null);
   const [count, setCount] = useState(null);
-  const [previous, setPrevious] = useState(null);
-  const [next, setNext] = useState(null);
+  let [previous, setPrevious] = useState(0);
+  let [next, setNext] = useState(1);
   useEffect(() => {
     getPeople()
       .then(results => {
-        // console.log(results);
-        setPrevious(results.prevoius)
-        setNext(results.next)
-        setCount(results.count)
-       
-               // looks like I need to go get the world from given url
+        console.log(results);
+        setPrevious(results.prevoius);
+        setNext(results.next);
+        setCount(results.count);
+
+        // looks like I need to go get the world from given url
         return results.results.map(({ name, birth_year, homeworld, url }) => {
+          // url = await fetch(`${homeworld}`).then(data => data.name)
           return { name, birth_year, homeworld, url };
         });
       })
@@ -53,20 +56,25 @@ export default function StarWarsPeopleList() {
             })}
           </tbody>
           <tfoot>
-         <tr><td>Count:{count} </td></tr> 
             <tr>
-              <td><button onClick={() => getPeople(next)}>Next</button></td>
-              <td> <button onClick={() => getPeople(previous)}>Previous</button></td>
-              </tr>
-           <tr><td>{Math.ceil(count/10) }</td></tr>
+              <td>Count:{count} </td>
+            </tr>
+            <tr>
+              <td>
+                <button onClick={() => getPeople(previous)}>Previous</button>
+              </td>
+              <td>
+              <button onClick={() => getPeople(next)}>Next</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Pages: {Math.ceil(count / 10)}</td>
+            </tr>
           </tfoot>
         </table>
-
-          
       ) : (
         "error"
       )}
-  
     </div>
   );
 }
