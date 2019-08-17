@@ -10,11 +10,11 @@ class Favorite extends React.Component {
     };
   }
 
-  hanldeClick = () => {
+  hanldeClick = (index) => {
     this.setState({ toggleStyle: !this.state.toggleStyle });
     let person = this.props.person;
     // bug is from this line here - using it for two functions - each one needs different thing
-    this.props.hanldeLike(!this.state.toggleStyle, person);
+    this.props.hanldeLike(!this.state.toggleStyle, person, index);
   };
 
   componentDidMount() {
@@ -28,6 +28,7 @@ class Favorite extends React.Component {
     this.setState({ toggleStyle: preFill.length > 0 ? true : false });
   };
   render() {
+   
     return (
       <div>
         <button

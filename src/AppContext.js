@@ -27,6 +27,7 @@ export class AppContextProvider extends Component {
   };
 
   removeFav = async index => {
+    await localStorage.removeItem("favorites")
     let favorites = this.state.favorites;
     await favorites.splice(index, 1);
 
@@ -35,6 +36,7 @@ export class AppContextProvider extends Component {
   };
 
   hanldeLike = async (toggle, person) => {
+    console.log(person.index)
     toggle ? await this.addFav(person) : await this.removeFav(person.index);
     toggle
     ? await localStorage.setItem("likesCount", this.state.likesCount + 1)
