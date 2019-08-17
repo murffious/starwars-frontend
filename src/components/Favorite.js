@@ -9,11 +9,13 @@ export default class Favorite extends React.Component {
       };
     }
   
+    hanldeClick = () => {
+      localStorage.setItem("likes")
+    }
     render() {
       return (
         <div>
-         
-          <button style={this.state.toggleStyle ? {backgroundColor:"red"}: null} onClick={() => this.setState({ count: this.state.count + 1, toggleStyle:true })}>
+          <button style={this.state.toggleStyle ? {backgroundColor:"red"}: null} onClick={() => this.setState({ toggleStyle:!this.state.toggleStyle })}>
             <img src={icon} height="10px" alt="like"/>
           </button>
         </div>
