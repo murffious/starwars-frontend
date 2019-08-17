@@ -43,12 +43,12 @@ removeFav = (index)=>{
 }
 
 hanldeLike = (toggle) => {
-  if(toggle){
-    // this.removeFav()
-  }
+  
   this.setState({
     likesCount: toggle? this.state.likesCount+1: this.state.likesCount-1
-  })
+  });
+  toggle? localStorage.setItem("likesCount",this.state.likesCount+1): localStorage.setItem("likesCount",this.state.likesCount-1)
+ 
 }
   render() {
     return (

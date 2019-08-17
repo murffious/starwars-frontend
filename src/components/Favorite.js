@@ -12,9 +12,8 @@ class Favorite extends React.Component {
   
     hanldeClick = () => {
       this.setState({ toggleStyle:!this.state.toggleStyle })
-
+ console.log(this.props)
       this.props.hanldeLike(!this.state.toggleStyle)
-      // localStorage.setItem("likes")
       
     }
     render() {
