@@ -9,6 +9,7 @@ export default function StarWarsPeopleList() {
     getPeople()
       .then(results => {
         console.log(results);
+        // looks like I need to go get the world from given url
         return results.results.map(({ name, birth_year, homeworld, url }) => {
           return { name, birth_year, homeworld, url };
         });
