@@ -18,7 +18,7 @@ async function loadData(results){
 
 export default function StarWarsPeopleList(props) {
   const [peopleList, setPeopleList] = useState(null);
-  // const [count, setCount] = useState(null);
+  const [count, setCount] = useState(null);
   let [previous, setPrevious] = useState(0);
   let [next, setNext] = useState(1);
   useEffect(() => {
@@ -30,7 +30,9 @@ export default function StarWarsPeopleList(props) {
       .then(peopleList => setPeopleList(peopleList))
       .catch(err => setPeopleList([]));
   }, []);
+
   const getNextPage = async (nextUrl) => {
+
     const data = await fetch(`${nextUrl}`);
     return await data.json()
       .then(async results => {
