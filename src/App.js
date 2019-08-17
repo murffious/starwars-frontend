@@ -31,17 +31,14 @@ class App extends React.Component {
   
   }
   render() {
+    const { count, next, previous } = this.state;
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>Click to have fun with Star Wars people.</p>
           {/* SearchBar */}
-          <StarWars />
-          {/* // paginate */}
-          
-         
-
+          <StarWars count={count} next={count} previous={previous} />
         </header>
       </div>
     );

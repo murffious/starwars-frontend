@@ -61,15 +61,15 @@ export default function StarWarsPeopleList(props) {
           </tbody>
           <tfoot>
             <tr>
-              <td>Count:{count} </td>
+              <td>Count:{props.count} </td>
             </tr>
             <tr>
            
-              <td><Previous/></td>
-              <td><Next/></td>
+              <td><Previous setPrevious={setPrevious} previous={props.previous}/></td>
+              <td><Next setNext={setNext} next={props.next}/></td>
             </tr>
             <tr>
-              <td>Pages: {Math.ceil(count / 10)}</td>
+              <td>Pages: {Math.ceil(props.count / 10)}</td>
             </tr>
           </tfoot>
         </table>
