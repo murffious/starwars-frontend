@@ -14,6 +14,7 @@ class Favorite extends React.Component {
       this.setState({ toggleStyle:!this.state.toggleStyle })
  console.log(this.props)
       let person = this.props.person;
+      // bug is from this line here - using it for two functions - each one needs different thing
       this.props.hanldeLike(!this.state.toggleStyle, person)
       
     }

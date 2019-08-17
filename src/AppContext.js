@@ -6,51 +6,44 @@ export class AppContextProvider extends Component {
   constructor() {
     super();
     this.state = {
-      likesCount: JSON.parse(localStorage.getItem("likesCount"))|| 0,
-      favorites: JSON.parse(localStorage.getItem("favorites"))|| []
+      likesCount: JSON.parse(localStorage.getItem("likesCount")) || 0,
+      favorites: JSON.parse(localStorage.getItem("favorites")) || []
     };
   }
 
-  componentDidMount(){
- 
-}
-
-routeToFaves = () => {
-
-}
-addFav = async (fav)=>{
-
-  let favorites = this.state.favorites.concat([
-      { 
-          name: `${fav.name}`, 
-          birth_year: `${fav.birth_year}`,
-          homeworld: `${fav.homeworld}`
+  addFav = async fav => {
+    let favorites = this.state.favorites.concat([
+      {
+        name: `${fav.name}`,
+        birth_year: `${fav.birth_year}`,
+        homeworld: `${fav.homeworld}`
       }
-  ]);
- 
-  this.setState({ 
+    ]);
+
+    this.setState({
       favorites: favorites
-  });
-  localStorage.setItem("favorites",JSON.stringify(favorites))
-}
+    });
+    await localStorage.setItem("favorites", JSON.stringify(favorites));
+  };
 
-removeFav = async (index)=>{
-  let favorites = this.state.favorites;
-  await favorites.splice(index, 1);
-  
-  this.setState({favorites})
-  localStorage.setItem("favorites",JSON.stringify(favorites))
-}
+  removeFav = async index => {
+    let favorites = this.state.favorites;
+    await favorites.splice(index, 1);
 
-hanldeLike = async (toggle, person) => {
-  
-  this.setState({
-    likesCount: toggle? this.state.likesCount+1: this.state.likesCount-1
-  });
-  toggle? localStorage.setItem("likesCount",this.state.likesCount+1): localStorage.setItem("likesCount",this.state.likesCount-1)
-  toggle? await this.addFav(person): await this.removeFav(person.index)
+    this.setState({ favorites });
+    await localStorage.setItem("favorites", JSON.stringify(favorites));
+  };
 
-}
+  hanldeLike = async (toggle, person) => {
+    toggle ? await this.addFav(person) : await this.removeFav(person.index);
+    toggle
+    ? await localStorage.setItem("likesCount", this.state.likesCount + 1)
+    : await localStorage.setItem("likesCount", this.state.likesCount - 1);
+    this.setState({
+      likesCount: toggle ? this.state.likesCount + 1 : this.state.likesCount - 1
+    });
+    
+  };
   render() {
     return (
       <AppContext.Provider
